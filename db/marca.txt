@@ -1,0 +1,6 @@
+1``Audi``Alemanha``C:/NewCarro/public/images/marca/Audi.jpg;;
+2``Chevrolet``EUA``C:/NewCarro/public/images/marca/Chevrolet.jpg;;
+4``Volkswagen``Alemanha``C:/NewCarro/public/images/marca/Volkswagen.jpg;;
+6``Hyundai``Coreia``C:/NewCarro/public/images/marca/Hyundai.jpg;;
+7``Honda``Japão``C:/NewCarro/public/images/marca/Honda.jpg;;
+8``Toyota``Japão``C:/NewCarro/public/images/marca/Toyota.jpg;;

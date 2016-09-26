@@ -1,0 +1,12 @@
+1``Gol``2016``4``Volkswagen``Alemanha``C:/NewCarro/public/images/marca/Volkswagen.jpg;;
+2``Corsa``2002``2``Chevrolet``EUA``C:/NewCarro/public/images/marca/Chevrolet.jpg;;
+3``HB-20``2014``6``Hyundai``Coreia``C:/NewCarro/public/images/marca/Hyundai.jpg;;
+4``Fit``2009``7``Honda``Japão``C:/NewCarro/public/images/marca/Honda.jpg;;
+5``Corolla``2012``8``Toyota``Japão``C:/NewCarro/public/images/marca/Toyota.jpg;;
+6``Cobalt``2016``2``Chevrolet``EUA``C:/NewCarro/public/images/marca/Chevrolet.jpg;;
+7``City``2012``7``Honda``Japão``C:/NewCarro/public/images/marca/Honda.jpg;;
+8``Civic``2014``7``Honda``Japão``C:/NewCarro/public/images/marca/Honda.jpg;;
+9``Golf``2004``4``Volkswagen``Alemanha``C:/NewCarro/public/images/marca/Volkswagen.jpg;;
+10``Polo``2008``4``Volkswagen``Alemanha``C:/NewCarro/public/images/marca/Volkswagen.jpg;;
+11``Passat``2009``4``Volkswagen``Alemanha``C:/NewCarro/public/images/marca/Volkswagen.jpg;;
+12``TT``2001``1``Audi``Alemanha``C:/NewCarro/public/images/marca/Audi.jpg;;
