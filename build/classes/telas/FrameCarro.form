@@ -10,6 +10,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -62,93 +65,97 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbMarca" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbMarca" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbModelo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbVersao" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbQuilometragem" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbCor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbAnunciante" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbCPF" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tfEmail" max="32767" attributes="0"/>
+                                      <Component id="tfEndereço" max="32767" attributes="0"/>
+                                      <Component id="tfCpf" max="32767" attributes="0"/>
+                                      <Component id="tfCor" max="32767" attributes="0"/>
+                                      <Component id="cbMarca" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="tfCodigo" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="cbModelo" alignment="1" pref="200" max="32767" attributes="0"/>
+                                      <Component id="cbVersao" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="tfQuilometragem" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="cbAnunciante" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbModelo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbVersao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbQuilometragem" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbCor" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbAnunciante" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbCPF" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbComprador" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbCpfComprador" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbEnderecoComprador" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbEmailComprador" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tfEnderecoComprador" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="tfCpfComprador" max="32767" attributes="0"/>
+                                      <Component id="tfEmailComprador" max="32767" attributes="0"/>
+                                      <Component id="tfComprador" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tfEmail" max="32767" attributes="0"/>
-                              <Component id="tfEndereço" max="32767" attributes="0"/>
-                              <Component id="tfCpf" max="32767" attributes="0"/>
-                              <Component id="tfCor" max="32767" attributes="0"/>
-                              <Component id="cbMarca" alignment="1" max="32767" attributes="0"/>
-                              <Component id="tfCodigo" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="cbModelo" alignment="1" pref="200" max="32767" attributes="0"/>
-                              <Component id="cbVersao" alignment="1" max="32767" attributes="0"/>
-                              <Component id="tfQuilometragem" alignment="1" max="32767" attributes="0"/>
-                              <Component id="cbAnunciante" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbComprador" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbCpfComprador" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbEnderecoComprador" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbEmailComprador" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfEnderecoComprador" alignment="1" max="32767" attributes="0"/>
-                              <Component id="tfCpfComprador" max="32767" attributes="0"/>
-                              <Component id="tfEmailComprador" max="32767" attributes="0"/>
-                              <Component id="tfComprador" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="picCarro" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnFoto" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="btnPic1" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnPic2" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnPic3" min="-2" pref="40" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lbDataAnuncio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="tfDataAnuncio" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lbDataVenda" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="tfDataVenda" min="-2" pref="90" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnNovo" min="-2" pref="63" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnExcluir" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSalvar" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="picCarro" alignment="0" pref="195" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnFoto" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnPic1" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnPic2" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnPic3" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lbDataAnuncio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbDataVenda" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tfDataVenda" max="32767" attributes="0"/>
+                                      <Component id="tfDataAnuncio" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnNovo" min="-2" pref="63" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -166,11 +173,11 @@
                               <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnPic3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="btnFoto" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="btnPic2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="btnPic1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnFoto" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnPic1" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnPic2" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnPic3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -226,15 +233,13 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbComprador" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfComprador" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbDataVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfDataVenda" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -250,10 +255,15 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tfEmailComprador" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbEmailComprador" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfDataVenda" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbDataVenda" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -266,22 +276,15 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnPic1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnPic2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnPic3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="3"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="btnFoto">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/telas/recursos/camera-identification-64_40x40.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFotoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfCodigo">
           <Properties>
@@ -374,8 +377,11 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbAnuncianteActionPerformed"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Cliente&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lbAnunciante">
@@ -417,21 +423,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLimpar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnNovo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Novo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbComprador">
           <Properties>
@@ -483,6 +501,36 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="btnPic1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/telas/recursos/1-64.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPic1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnPic2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/telas/recursos/2-64.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPic2ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnPic3">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/telas/recursos/3-64.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPic3ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelConsulta">
@@ -499,7 +547,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="scrollLista" pref="778" max="32767" attributes="0"/>
+                  <Component id="scrollLista" pref="777" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -508,7 +556,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="scrollLista" pref="0" max="32767" attributes="0"/>
+                  <Component id="scrollLista" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>

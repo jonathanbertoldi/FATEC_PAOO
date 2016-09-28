@@ -27,7 +27,7 @@ import persistencia.VersaoControlador;
  *
  * @author Jonathan
  */
-public class FrameVersao extends javax.swing.JFrame {
+public class FrameVersao extends javax.swing.JDialog {
 
     private boolean frameAbriu;
     private boolean listenerAtivo = false;
@@ -42,6 +42,7 @@ public class FrameVersao extends javax.swing.JFrame {
     public FrameVersao() {
         initComponents();
         setLocationRelativeTo(null);
+        setModal(true);
         
         modeloControlador = new ModeloControlador();
         marcaControlador = new MarcaControlador();

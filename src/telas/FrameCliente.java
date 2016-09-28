@@ -27,7 +27,7 @@ import persistencia.ClienteControlador;
  *
  * @author Jonathan
  */
-public class FrameCliente extends javax.swing.JFrame {
+public class FrameCliente extends javax.swing.JDialog {
 
     private boolean frameAbriu;
     private boolean listenerAtivo;
@@ -41,6 +41,7 @@ public class FrameCliente extends javax.swing.JFrame {
         cbSexo.setSelectedIndex(-1);
         cbEstado.setSelectedIndex(-1);
         setLocationRelativeTo(null);
+        setModal(true);
         
         clienteControlador = new ClienteControlador();
         frameAbriu = true;

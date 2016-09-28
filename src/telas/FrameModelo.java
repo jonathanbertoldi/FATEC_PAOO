@@ -23,7 +23,7 @@ import telas.renderers.ModeloRenderer;
  *
  * @author Jonathan
  */
-public class FrameModelo extends javax.swing.JFrame {
+public class FrameModelo extends javax.swing.JDialog {
 
     private boolean frameAbriu;
     private boolean listenerAtivo;
@@ -36,6 +36,7 @@ public class FrameModelo extends javax.swing.JFrame {
     public FrameModelo() {
         initComponents();
         setLocationRelativeTo(null);
+        setModal(true);
         
         modeloControlador = new ModeloControlador();
         marcaControlador = new MarcaControlador();

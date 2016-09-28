@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import modelos.Carro;
 import modelos.Cliente;
+import modelos.Endereco;
 import modelos.Marca;
 import modelos.Modelo;
 import modelos.Versao;
 import modelos.enums.Cambio;
 import modelos.enums.Combustivel;
+import modelos.enums.Estado;
 import modelos.enums.Sexo;
 import modelos.enums.Status;
 
@@ -54,6 +56,7 @@ public class CarroControlador extends FileControlador {
                         carro.getAnunciante().getEndereco().getCep()+ "``" +
                         carro.getAnunciante().getEndereco().getCidade()+ "``" +
                         carro.getAnunciante().getEndereco().getEstado()+ "``" +
+                        carro.getVersao().getCodigo()+ "``" +
                         carro.getVersao().getCilindradas()+ "``" +
                         carro.getVersao().getNomeMotor() + "``" +
                         Integer.toString(carro.getVersao().getValvulas()) + "``" +
@@ -84,6 +87,7 @@ public class CarroControlador extends FileControlador {
                 } else {
                     entrada += Status.A_VENDA.toString() + ";;\r\n";
                 }
+                System.out.println(entrada);
                 bw.write(entrada);
             }
             bw.close();
@@ -126,41 +130,62 @@ public class CarroControlador extends FileControlador {
                     anunciante.setDataNascimento(LocalDate.parse(atributos[10], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                     anunciante.setEmail(atributos[11]);
                     anunciante.setSexo(Sexo.compara(atributos[12]));
+                    
+                    Endereco endereco = new Endereco();
+                    endereco.setRua(atributos[13]);
+                    endereco.setNumero(Long.parseLong(atributos[14]));
+                    endereco.setCep(atributos[15]);
+                    endereco.setCidade(atributos[16]);
+                    endereco.setEstado(Estado.compara(atributos[17]));
+                    
+                    anunciante.setEndereco(endereco);
                     carro.setAnunciante(anunciante);
                     
                     Versao versao = new Versao();
-                    versao.setCodigo(Integer.parseInt(atributos[13]));
-                    versao.setCilindradas(Float.parseFloat(atributos[14]));
-                    versao.setNomeMotor(atributos[15]);
-                    versao.setValvulas(Integer.parseInt(atributos[16]));
-                    versao.setPortas(Integer.parseInt(atributos[17]));
-                    versao.setCombustivel(Combustivel.compara(atributos[18]));
-                    versao.setCambio(Cambio.compara(atributos[19]));
+                    versao.setCodigo(Integer.parseInt(atributos[18]));
+                    versao.setCilindradas(Float.parseFloat(atributos[19]));
+                    versao.setNomeMotor(atributos[20]);
+                    versao.setValvulas(Integer.parseInt(atributos[21]));
+                    versao.setPortas(Integer.parseInt(atributos[22]));
+                    versao.setCombustivel(Combustivel.compara(atributos[23]));
+                    versao.setCambio(Cambio.compara(atributos[24]));
                     
                     Modelo modelo = new Modelo();
-                    modelo.setCodigo(Integer.parseInt(atributos[20]));
-                    modelo.setNome(atributos[21]);
-                    modelo.setAno(Long.parseLong(atributos[22]));
+                    modelo.setCodigo(Integer.parseInt(atributos[25]));
+                    modelo.setNome(atributos[26]);
+                    modelo.setAno(Long.parseLong(atributos[27]));
                     
                     Marca marca = new Marca();
-                    marca.setCodigo(Integer.parseInt(atributos[23]));
-                    marca.setNome(atributos[24]);
-                    marca.setPais(atributos[25]);
-                    marca.setLogo(atributos[26]);
+                    marca.setCodigo(Integer.parseInt(atributos[28]));
+                    marca.setNome(atributos[29]);
+                    marca.setPais(atributos[30]);
+                    marca.setLogo(atributos[31]);
                     
                     modelo.setMarca(marca);
                     versao.setModelo(modelo);
                     
                     carro.setVersao(versao);
-                    
-                    if (atributos.length > 27) {
+                    System.out.println(atributos.length);
+                    if (atributos.length > 33) {
+                        System.out.println(atributos[32]);
+                        carro.setDataVenda(LocalDate.parse(atributos[32], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                        
                         Cliente comprador = new Cliente();
-                        comprador.setCodigo(Integer.parseInt(atributos[27]));
-                        comprador.setNome(atributos[28]);
-                        comprador.setCpf(atributos[29]);
-                        comprador.setDataNascimento(LocalDate.parse(atributos[30], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-                        comprador.setEmail(atributos[31]);
-                        comprador.setSexo(Sexo.compara(atributos[32]));
+                        comprador.setCodigo(Integer.parseInt(atributos[33]));
+                        comprador.setNome(atributos[34]);
+                        comprador.setCpf(atributos[35]);
+                        comprador.setDataNascimento(LocalDate.parse(atributos[36], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                        comprador.setEmail(atributos[37]);
+                        comprador.setSexo(Sexo.compara(atributos[38]));
+                        
+                        Endereco end = new Endereco();
+                        end.setRua(atributos[39]);
+                        end.setNumero(Long.parseLong(atributos[40]));
+                        end.setCep(atributos[41]);
+                        end.setCidade(atributos[42]);
+                        end.setEstado(Estado.compara(atributos[43]));
+                        comprador.setEndereco(end);
+                        
                         carro.setComprador(comprador);
                         carro.setStatus(Status.VENDIDO);
                     } else {
@@ -176,5 +201,115 @@ public class CarroControlador extends FileControlador {
             System.out.println("Erro durante a leitura de '" + urlBaseDados() + "'");
         }
         return lista;
+    }
+    
+    public List<Carro> recuperarListaAVenda() {
+        List<Carro> lista = new ArrayList<>();
+        try {
+            FileReader fr = new FileReader(urlBaseDados());
+            BufferedReader br = new BufferedReader(fr);
+            String saida = "", linha = "";
+            while ((linha = br.readLine()) != null) {
+                saida += linha;
+            }
+            br.close();
+            
+            if (saida.equals("")) {
+                lista = new ArrayList<>();
+            } else {
+                String[] registros = saida.split(";;");
+                for (String r : registros) {
+                    String[] atributos = r.split("``");
+                    Carro carro = new Carro();
+                    carro.setCodigo(Integer.parseInt(atributos[0]));
+                    carro.setKm(Float.parseFloat(atributos[1]));
+                    carro.setCor(atributos[2]);
+                    String[] fotos = {atributos[3], atributos[4], atributos[5]};
+                    carro.setFotos(fotos);
+                    carro.setDataAnuncio(LocalDate.parse(atributos[6], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                    
+                    Cliente anunciante = new Cliente();
+                    anunciante.setCodigo(Integer.parseInt(atributos[7]));
+                    anunciante.setNome(atributos[8]);
+                    anunciante.setCpf(atributos[9]);
+                    anunciante.setDataNascimento(LocalDate.parse(atributos[10], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                    anunciante.setEmail(atributos[11]);
+                    anunciante.setSexo(Sexo.compara(atributos[12]));
+                    
+                    Endereco endereco = new Endereco();
+                    endereco.setRua(atributos[13]);
+                    endereco.setNumero(Long.parseLong(atributos[14]));
+                    endereco.setCep(atributos[15]);
+                    endereco.setCidade(atributos[16]);
+                    endereco.setEstado(Estado.compara(atributos[17]));
+                    
+                    anunciante.setEndereco(endereco);
+                    carro.setAnunciante(anunciante);
+                    
+                    Versao versao = new Versao();
+                    versao.setCodigo(Integer.parseInt(atributos[18]));
+                    versao.setCilindradas(Float.parseFloat(atributos[19]));
+                    versao.setNomeMotor(atributos[20]);
+                    versao.setValvulas(Integer.parseInt(atributos[21]));
+                    versao.setPortas(Integer.parseInt(atributos[22]));
+                    versao.setCombustivel(Combustivel.compara(atributos[23]));
+                    versao.setCambio(Cambio.compara(atributos[24]));
+                    
+                    Modelo modelo = new Modelo();
+                    modelo.setCodigo(Integer.parseInt(atributos[25]));
+                    modelo.setNome(atributos[26]);
+                    modelo.setAno(Long.parseLong(atributos[27]));
+                    
+                    Marca marca = new Marca();
+                    marca.setCodigo(Integer.parseInt(atributos[28]));
+                    marca.setNome(atributos[29]);
+                    marca.setPais(atributos[30]);
+                    marca.setLogo(atributos[31]);
+                    
+                    modelo.setMarca(marca);
+                    versao.setModelo(modelo);
+                    
+                    carro.setVersao(versao);
+                    System.out.println(atributos.length);
+                    if (atributos.length > 33) {
+                        System.out.println(atributos[32]);
+                        carro.setDataVenda(LocalDate.parse(atributos[32], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                        
+                        Cliente comprador = new Cliente();
+                        comprador.setCodigo(Integer.parseInt(atributos[33]));
+                        comprador.setNome(atributos[34]);
+                        comprador.setCpf(atributos[35]);
+                        comprador.setDataNascimento(LocalDate.parse(atributos[36], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                        comprador.setEmail(atributos[37]);
+                        comprador.setSexo(Sexo.compara(atributos[38]));
+                        carro.setComprador(comprador);
+                        carro.setStatus(Status.VENDIDO);
+                    } else {
+                        carro.setStatus(Status.A_VENDA);
+                    }
+                    if (carro.getStatus().equals(Status.A_VENDA)){
+                        lista.add(carro);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Não foi possível abrir o arquivo '" + urlBaseDados() + "'");
+        } catch (IOException e) {
+            System.out.println("Erro durante a leitura de '" + urlBaseDados() + "'");
+        }
+        return lista;
+    }
+    
+    public void vender(Carro carro) {
+        List<Carro> carros = recuperarLista();
+        int i = 0;
+        for (Carro item : carros) {
+            if (carro.getCodigo() == item.getCodigo()) {
+                carros.set(i, carro);
+                break;
+            }
+            i++;
+        }
+        gravarLista(carros);
     }
 }

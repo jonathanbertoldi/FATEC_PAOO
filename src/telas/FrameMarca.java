@@ -24,7 +24,7 @@ import telas.renderers.MarcaRenderer;
  *
  * @author Jonathan
  */
-public class FrameMarca extends javax.swing.JFrame {
+public class FrameMarca extends javax.swing.JDialog {
 
     private JList<Marca> listMarcas;
     private boolean frameAbriu;
@@ -39,6 +39,7 @@ public class FrameMarca extends javax.swing.JFrame {
     public FrameMarca() {
         initComponents();
         setLocationRelativeTo(null);
+        setModal(true);
         
         marcaControlador = new MarcaControlador();
         frameAbriu = true;
@@ -98,7 +99,7 @@ public class FrameMarca extends javax.swing.JFrame {
     
     private boolean isImagemValida(File file) {
         String nome = file.getName().substring(file.getName().lastIndexOf(".")+1);
-        return nome.equals("jpg") || nome.equals("jepg") || nome.equals("png") || nome.equals("bmp");
+        return nome.equals("jpg") || nome.equals("jpeg") || nome.equals("png") || nome.equals("bmp");
     }
     
     private void subirImg() {
@@ -289,6 +290,7 @@ public class FrameMarca extends javax.swing.JFrame {
         picLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sem_foto.jpg"))); // NOI18N
         picLogo.setText("jLabel4");
 
+        btnLimparPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/recursos/broom-52_40x40.png"))); // NOI18N
         btnLimparPic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparPicActionPerformed(evt);
@@ -323,6 +325,7 @@ public class FrameMarca extends javax.swing.JFrame {
             }
         });
 
+        btnPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/recursos/camera-identification-64_40x40.png"))); // NOI18N
         btnPic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPicActionPerformed(evt);

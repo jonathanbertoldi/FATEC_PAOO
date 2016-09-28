@@ -190,6 +190,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnLimparPic">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/telas/recursos/broom-52_40x40.png"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparPicActionPerformed"/>
           </Events>
@@ -227,6 +232,11 @@
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPic">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/telas/recursos/camera-identification-64_40x40.png"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPicActionPerformed"/>
           </Events>

@@ -17,4 +17,9 @@ public class FileControlador {
         String imgPath = srcPath + "public/images/";
         return imgPath;
     }
+    
+    public String urlContratos() {
+        String contratoPath = srcPath + "public/contratos/";
+        return contratoPath;
+    }
 }
