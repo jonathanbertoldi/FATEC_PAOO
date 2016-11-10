@@ -1,7 +1,0 @@
-1``2400.0``GTI``6``4``Gasolina``Manual``9``Golf``2004``4``Volkswagen``Alemanha``C:/NewCarro/public/images/marca/Volkswagen.jpg;;
-2``1000.0``VHC``4``4``Gasolina``Manual``2``Corsa``2002``2``Chevrolet``EUA``C:/NewCarro/public/images/marca/Chevrolet.jpg;;
-3``1800.0``EXS``4``4``Flex``Automático``8``Civic``2014``7``Honda``Japão``C:/NewCarro/public/images/marca/Honda.jpg;;
-4``1600.0``XEI``4``4``Flex``Automático``5``Corolla``2012``8``Toyota``Japão``C:/NewCarro/public/images/marca/Toyota.jpg;;
-5``1800.0``QUATTRO``20``2``Gasolina``Manual``12``TT``2001``1``Audi``Alemanha``C:/NewCarro/public/images/marca/Audi.jpg;;
-6``1200.0``ORIGINE``8``4``Flex``Manual``13``C3``2016``9``Citroen``França``C:/NewCarro/public/images/marca/Citroen.jpg;;
-7``1800.0``SFI-LT``8``4``Flex``Automático``6``Cobalt``2016``2``Chevrolet``EUA``C:/NewCarro/public/images/marca/Chevrolet.jpg;;
