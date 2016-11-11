@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import br.com.sp.fatec.javamotors.model.Marca;
 
@@ -17,12 +18,29 @@ public class MarcaDAO {
 		manager = PersistenceManager.INSTANCE.getEntityManager();
 	}
 	
+	@Transactional
 	public void insert(Marca marca) {
-		manager.persist(marca);
+		try {
+			manager.getTransaction().begin();
+			manager.persist(marca);
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			manager.getTransaction().rollback();
+		}
+		
 	}
 	
+	@Transactional
 	public void update(Marca marca) {
-		manager.merge(marca);
+		try {
+			manager.getTransaction().begin();
+			manager.merge(marca);
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			manager.getTransaction().rollback();
+		}
 	}
 	
 	public List<Marca> findAll() {

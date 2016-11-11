@@ -1,37 +1,52 @@
 package br.com.sp.fatec.javamotors.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.GridBagLayout;
+
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import br.com.sp.fatec.javamotors.controller.IOController;
+import br.com.sp.fatec.javamotors.controller.MarcaController;
+import br.com.sp.fatec.javamotors.model.Marca;
+
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
 import java.awt.SystemColor;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class FrameMarca extends JDialog {
 
+	private final String MARCA_PATH = IOController.urlImagens() + "marca/";
+	
 	private JPanel contentPane;
 	private JPanel panelTable;
 	private JPanel panelDados;
@@ -53,13 +68,217 @@ public class FrameMarca extends JDialog {
 	private JButton btnAddimagem;
 	private JButton btnRmimagem;
 	private JScrollPane scrollPane;
+	private JTable tableMarcas;
 
+	private boolean frameAbriu;
+	private boolean tableListenerAtivo;
+	private List<Marca> marcas;
+	private Marca marca;
+
+	private MarcaController marcaController;
+	
 	/**
 	 * Create the frame.
 	 */
 	public FrameMarca() {
 		initialize();
+		initListeners();
+		
+		marcaController = new MarcaController();
+		
+		tableListenerAtivo = true;
+		frameAbriu = true;
+		
+		atualizarTableMarcas();
 	}
+	
+	private JTable criarTableMarcas() {
+		marcas = marcaController.index();
+		if (frameAbriu) {
+			frameAbriu = false;
+		}
+		
+		String[] headers = {"Cod.", "Nome", "País de Origem"};
+		TableModel model = new DefaultTableModel(headers, marcas.size()) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		for (int i = 0; i < marcas.size(); i++) {
+            model.setValueAt(marcas.get(i).getId(), i, 0);
+            model.setValueAt(marcas.get(i).getNome(), i, 1);
+            model.setValueAt(marcas.get(i).getPais(), i, 2);
+        }
+        
+        final JTable retorno = new JTable(model);
+        retorno.getColumnModel().getColumn(0).setPreferredWidth(35);
+        retorno.getColumnModel().getColumn(1).setPreferredWidth(150);
+        retorno.getColumnModel().getColumn(2).setPreferredWidth(100);
+        retorno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        retorno.getTableHeader().setResizingAllowed(false);
+        retorno.getTableHeader().setReorderingAllowed(false);
+        
+        retorno.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting() && tableListenerAtivo) {
+                    marca = marcas.get(retorno.getSelectedRow());
+                    popularCampos();
+                }
+            }
+        });
+        return retorno;
+	}
+
+	private void atualizarTableMarcas() {
+		tableMarcas = criarTableMarcas();
+		scrollPane.setViewportView(tableMarcas);
+	}
+
+	private boolean isFormularioValido(){
+        if (txtNome.getText().length() < 1){
+            JOptionPane.showMessageDialog(this, "Insira um nome válido para a marca");
+            return false;
+        } else if (txtPaisDeOrigem.getText().length() < 1) {
+            JOptionPane.showMessageDialog(this, "Insira um país válido para a marca");
+            return false;
+        } else {
+            return true;
+        }
+    }
+	
+	private boolean isImagemValida(File file) {
+        String nome = file.getName().substring(file.getName().lastIndexOf(".")+1);
+        return nome.equals("jpg") || nome.equals("jpeg") || nome.equals("png") || nome.equals("bmp");
+    }
+    
+    private void subirImg() {
+        try {
+            JFileChooser fc = new JFileChooser();
+            fc.showDialog(this, "Abrir");
+            File f = fc.getSelectedFile();
+            if (isImagemValida(f)){
+                BufferedImage bi = ImageIO.read(f);
+                lblPiclogo.setIcon(new ImageIcon(bi.getScaledInstance(194, 194, Image.SCALE_DEFAULT)));
+            } else {
+                JOptionPane.showMessageDialog(this, "Formato de arquivo inválido.\nDeve ser .jpg, .jpeg, .png ou .bmp");
+            }
+        } catch (IOException e) {
+            System.out.println("Deu bosta na hora de subir a img chefe.");
+        } catch (Exception e) {
+            System.out.println("Deu bosta na hora de subir a img chefe.");
+        }
+    }
+    
+    private void limparImg() {
+    	lblPiclogo.setIcon(new ImageIcon(getClass().getResource("/sem_foto.jpg")));
+    }
+    
+    private void limparTudo() {
+        limparImg();
+        txtNome.setText("");
+        txtPaisDeOrigem.setText("");
+    }
+    
+    private void novaMarca() {
+        marca = null;
+        txtId.setText("");
+        tableListenerAtivo = false;
+        tableMarcas.clearSelection();
+        tableListenerAtivo = true;
+        limparTudo();
+    }
+    
+    private void salvarImg(String nome) {
+        try {
+            BufferedImage bi = new BufferedImage(
+            		lblPiclogo.getIcon().getIconWidth(),
+            		lblPiclogo.getIcon().getIconHeight(),
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics g = bi.createGraphics();
+            lblPiclogo.getIcon().paintIcon(null, g, 0, 0);
+            g.dispose();
+            ImageIO.write(bi, "jpg", new File(MARCA_PATH + nome + ".jpg"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    private Marca criarMarca() {
+        Marca m = new Marca();
+        m.setNome(txtNome.getText());
+        m.setPais(txtPaisDeOrigem.getText());
+        m.setLogo(MARCA_PATH + m.getNome() + ".jpg");
+        salvarImg(m.getNome());
+        return m;
+    }
+    
+    private void salvarMarca() {
+        if (isFormularioValido()) {
+            if (marca == null) {
+                if (marcaController.create(criarMarca()))
+                	JOptionPane.showMessageDialog(this, "Marca adicionada com sucesso");
+            } else {
+            	editarMarca();
+                if (marcaController.update(marca))
+                	JOptionPane.showMessageDialog(this, "Marca " + marca.getNome() + " atualizada com sucesso");
+            }
+            atualizarTableMarcas();
+            novaMarca();
+        }
+    }
+    
+    private void apagarImgVelha() {
+        try {
+            File f = new File(marca.getLogo());
+            System.out.println(f.getPath());
+            f.delete();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    private void editarMarca() {
+        apagarImgVelha();
+        marca.setId(Long.parseLong(txtId.getText()));
+        marca.setNome(txtNome.getText());
+        marca.setPais(txtPaisDeOrigem.getText());
+        marca.setLogo(MARCA_PATH + marca.getNome() + ".jpg");
+        salvarImg(marca.getNome());
+    }
+    
+    private void abrirImg() {
+        try {
+            BufferedImage bi = ImageIO.read(new File(marca.getLogo()));
+            lblPiclogo.setIcon(new ImageIcon(bi.getScaledInstance(194, 194, Image.SCALE_DEFAULT)));
+        } catch (IOException e) {
+            System.out.println("Deu bosta na hora de subir a img chefe.");
+        }
+    }
+    
+    private void popularCampos() {
+        if (marca != null) {
+            txtId.setText(marca.getId().toString());
+            txtNome.setText(marca.getNome());
+            txtPaisDeOrigem.setText(marca.getPais());
+            abrirImg();
+        }
+    }
+    
+    private void excluirMarca() {
+        if (marca != null) {
+            if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir a marca " + marca.getNome() + "?", "Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if (marcaController.destroy(marca))
+                	JOptionPane.showMessageDialog(this, "Marca excluída com sucesso");
+                atualizarTableMarcas();
+                novaMarca();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma marca para excluí-la");
+        }
+    }
+	
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 700, 513);
@@ -101,6 +320,7 @@ public class FrameMarca extends JDialog {
 		lblId = new JLabel("ID");
 		
 		txtId = new JTextField();
+		txtId.setEnabled(false);
 		txtId.setColumns(10);
 		
 		lblNome = new JLabel("Nome");
@@ -220,5 +440,43 @@ public class FrameMarca extends JDialog {
 					.addContainerGap())
 		);
 		panelTable.setLayout(gl_panelTable);
+	}
+
+	private void initListeners() {
+		btnAddimagem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				subirImg();
+			}
+		});
+		
+		btnRmimagem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limparImg();
+			}
+		});
+		
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limparTudo();
+			}
+		});
+		
+		btnNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				novaMarca();
+			}
+		});
+		
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salvarMarca();
+			}
+		});
+		
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				excluirMarca();
+			}
+		});
 	}
 }

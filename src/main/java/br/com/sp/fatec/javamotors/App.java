@@ -19,10 +19,6 @@ public class App {
 			e.printStackTrace();
 		}
 		
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-		em.close();
-		PersistenceManager.INSTANCE.close();
-		
 		FramePrincipal frame = new FramePrincipal();
 		frame.setVisible(true);
 	}
