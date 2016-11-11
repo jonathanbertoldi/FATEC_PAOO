@@ -16,16 +16,22 @@ public class Marca {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column(length = 50, nullable = false)
 	private String nome;
+	
 	@Column(length = 50, nullable = false)
 	private String pais;
+	
 	@Column(length = 200, nullable = false)
 	private String logo;
+	
 	@Column(name = "criado_em", nullable = false)
 	private LocalDate criadoEm;
+	
 	@Column(name = "autalizado_em")
 	private LocalDate atualizadoEm;
+	
 	@Column(name = "deletado_em")
 	private LocalDate deletadoEm;
 	
@@ -70,5 +76,10 @@ public class Marca {
 	}
 	public void setDeletadoEm(LocalDate deletadoEm) {
 		this.deletadoEm = deletadoEm;
+	}
+	
+	@Override
+	public String toString() {
+		return this.nome;
 	}
 }

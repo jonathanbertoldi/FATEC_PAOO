@@ -5,37 +5,23 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
-import br.com.sp.fatec.javamotors.model.Marca;
+import br.com.sp.fatec.javamotors.model.Modelo;
 
-public class MarcaDAO {
-	
+public class ModeloDAO {
+
 	@PersistenceContext
 	private EntityManager manager;
-	
-	public MarcaDAO() {
+
+	public ModeloDAO() {
 		manager = PersistenceManager.INSTANCE.getEntityManager();
 	}
 	
-	@Transactional
-	public void insert(Marca marca) {
+	public void insert(Modelo modelo) {
 		try {
 			manager.getTransaction().begin();
-			manager.persist(marca);
-			manager.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			manager.getTransaction().rollback();
-		}
-		
-	}
-	
-	@Transactional
-	public void update(Marca marca) {
-		try {
-			manager.getTransaction().begin();
-			manager.merge(marca);
+			System.out.println("Tá aqui DAO");
+			manager.persist(modelo);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,13 +29,24 @@ public class MarcaDAO {
 		}
 	}
 	
-	public List<Marca> findAll() {
-		TypedQuery<Marca> query = manager.createQuery("SELECT m FROM Marca m WHERE m.deletadoEm = null", Marca.class);
+	public void update(Modelo modelo) {
+		try {
+			manager.getTransaction().begin();
+			manager.merge(modelo);
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			manager.getTransaction().rollback();
+		}
+	}
+	
+	public List<Modelo> findAll() {
+		TypedQuery<Modelo> query = manager.createQuery("SELECT m FROM Modelo m WHERE m.deletadoEm = null", Modelo.class);
 		return query.getResultList();
 	}
 	
-	public Marca findById(long marcaId) {
-		Marca marca = manager.find(Marca.class, marcaId);
-		return marca;
+	public Modelo findById(long marcaId) {
+		Modelo modelo = manager.find(Modelo.class, marcaId);
+		return modelo;
 	}
 }
