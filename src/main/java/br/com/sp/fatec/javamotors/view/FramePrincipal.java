@@ -2,6 +2,7 @@ package br.com.sp.fatec.javamotors.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,6 +35,7 @@ public class FramePrincipal extends JFrame {
 		initListeners();
 	}
 	private void initialize() {
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 300);
 		setLocationRelativeTo(null);
@@ -100,6 +102,14 @@ public class FramePrincipal extends JFrame {
 			
 			public void actionPerformed(ActionEvent arg0) {
 				FrameModelo frame = new FrameModelo();
+				frame.setVisible(true);
+			}
+		});
+		
+		btnVersao.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				FrameVersao frame = new FrameVersao();
 				frame.setVisible(true);
 			}
 		});

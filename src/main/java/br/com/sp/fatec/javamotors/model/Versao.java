@@ -1,5 +1,7 @@
 package br.com.sp.fatec.javamotors.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -42,53 +44,101 @@ public class Versao {
 	@ManyToOne
 	@JoinColumn(name = "modelo_id", nullable = false)
     private Modelo modelo;
-    
+	
+	@Column(name = "criado_em", nullable = false)
+	private LocalDate criadoEm;
+	
+	@Column(name = "autalizado_em")
+	private LocalDate atualizadoEm;
+	
+	@Column(name = "deletado_em")
+	private LocalDate deletadoEm;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public Float getCilindradas() {
 		return cilindradas;
 	}
+
 	public void setCilindradas(Float cilindradas) {
 		this.cilindradas = cilindradas;
 	}
+
 	public String getNomeMotor() {
 		return nomeMotor;
 	}
+
 	public void setNomeMotor(String nomeMotor) {
 		this.nomeMotor = nomeMotor;
 	}
+
 	public int getValvulas() {
 		return valvulas;
 	}
+
 	public void setValvulas(int valvulas) {
 		this.valvulas = valvulas;
 	}
+
 	public int getPortas() {
 		return portas;
 	}
+
 	public void setPortas(int portas) {
 		this.portas = portas;
 	}
+
 	public Combustivel getCombustivel() {
 		return combustivel;
 	}
+
 	public void setCombustivel(Combustivel combustivel) {
 		this.combustivel = combustivel;
 	}
+
 	public Cambio getCambio() {
 		return cambio;
 	}
+
 	public void setCambio(Cambio cambio) {
 		this.cambio = cambio;
 	}
+
 	public Modelo getModelo() {
 		return modelo;
 	}
+
 	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
+	}
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
+	}
+
+	public LocalDate getAtualizadoEm() {
+		return atualizadoEm;
+	}
+
+	public void setAtualizadoEm(LocalDate atualizadoEm) {
+		this.atualizadoEm = atualizadoEm;
+	}
+
+	public LocalDate getDeletadoEm() {
+		return deletadoEm;
+	}
+
+	public void setDeletadoEm(LocalDate deletadoEm) {
+		this.deletadoEm = deletadoEm;
 	}
 }

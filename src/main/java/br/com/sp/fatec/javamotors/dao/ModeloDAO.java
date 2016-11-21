@@ -49,4 +49,10 @@ public class ModeloDAO {
 		Modelo modelo = manager.find(Modelo.class, marcaId);
 		return modelo;
 	}
+	
+	public List<Modelo> findByMarca(long marcaId) {
+		TypedQuery<Modelo> query = manager.createQuery("SELECT m FROM Modelo m WHERE m.marca.id = :marcaId", Modelo.class);
+		query.setParameter("marcaId", marcaId);
+		return query.getResultList();
+	}
 }

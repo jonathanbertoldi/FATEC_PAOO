@@ -93,4 +93,9 @@ public class Modelo {
 	public void setDeletadoEm(LocalDate deletadoEm) {
 		this.deletadoEm = deletadoEm;
 	}
+	
+	@Override
+	public String toString() {
+		return this.nome;
+	}
 }

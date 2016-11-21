@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.com.sp.fatec.javamotors.dao.ModeloDAO;
+import br.com.sp.fatec.javamotors.model.Marca;
 import br.com.sp.fatec.javamotors.model.Modelo;
 
 public class ModeloController {
@@ -22,10 +23,13 @@ public class ModeloController {
 		return modeloDao.findById(modeloId);
 	}
 	
+	public List<Modelo> findByMarca(Marca marca) {
+		return modeloDao.findByMarca(marca.getId());
+	}
+	
 	public boolean create(Modelo modelo) {
 		try {
 			modelo.setCriadoEm(LocalDate.now());
-			System.out.println("Tá aqui CONTROLLER");
 			modeloDao.insert(modelo);
 			return true;
 		} catch (Exception e) {
