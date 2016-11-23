@@ -44,7 +44,7 @@ public class Carro {
 	@Column(name = "data_anuncio", nullable = false)
 	private LocalDate dataAnuncio;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "anunciante_id", nullable = false)
 	private Cliente anunciante;
 	

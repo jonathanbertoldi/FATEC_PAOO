@@ -1,7 +1,5 @@
 package br.com.sp.fatec.javamotors.view;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -69,7 +67,6 @@ public class FrameCarro extends JDialog {
 	private JPanel panelTable;
 	private JPanel panelBotoes;
 	private JButton btnNovo;
-	private JButton btnLimpar;
 	private JButton btnSalvar;
 	private JPanel panelFormulario;
 	private JScrollPane scrollPane;
@@ -291,7 +288,7 @@ public class FrameCarro extends JDialog {
             File f = fc.getSelectedFile();
             if (isImagemValida(f)){
                 BufferedImage bi = ImageIO.read(f);
-                picCarro.setIcon(new ImageIcon(bi.getScaledInstance(194, 194, Image.SCALE_DEFAULT)));
+                picCarro.setIcon(new ImageIcon(bi.getScaledInstance(220, 134, Image.SCALE_DEFAULT)));
                 
                 if (picSelecionada == 1)
                     listaPics[0] = (ImageIcon)picCarro.getIcon();
@@ -426,17 +423,20 @@ public class FrameCarro extends JDialog {
         carro.setCor(txtCor.getText());
         carro.setDataAnuncio(LocalDate.now());
         carro.setAnunciante((Cliente) cbAnunciante.getSelectedItem());
-        carro.setFotos(pegarCaminhoFotos(carro));
         carro.setStatus(Status.A_VENDA);
-        salvarImgs(carro);
         return carro;
     }
     
     private void salvarCarro() {
         if (isFormularioValido()) {
             if (carro == null) {
-                if (carroControlador.create(criarCarro()))
-                		JOptionPane.showMessageDialog(this, "Carro adicionado com sucesso");
+            	carro = criarCarro();
+                if (carroControlador.create(carro)) {
+                	JOptionPane.showMessageDialog(this, "Carro adicionado com sucesso");
+                    carro.setFotos(pegarCaminhoFotos(carro));
+                    salvarImgs(carro);
+                    carroControlador.update(carro);
+                }
             } else {
                 editarCarro();
                 if (carroControlador.update(carro))
@@ -464,7 +464,7 @@ public class FrameCarro extends JDialog {
             int i = 0;
             for (String caminho : carro.getFotos()) {
                 BufferedImage bi = ImageIO.read(new File(caminho));
-                listaPics[i] = new ImageIcon(bi.getScaledInstance(194, 194, Image.SCALE_DEFAULT));
+                listaPics[i] = new ImageIcon(bi.getScaledInstance(220, 134, Image.SCALE_DEFAULT));
                 i++;
             }
             picCarro.setIcon(listaPics[0]);
@@ -774,6 +774,7 @@ public class FrameCarro extends JDialog {
 		lblDataDeAnuncio = new JLabel("Data de Anuncio");
 		
 		txtDataDeAnuncio = new JTextField();
+		txtDataDeAnuncio.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		txtDataDeAnuncio.setEnabled(false);
 		txtDataDeAnuncio.setColumns(10);
 		GroupLayout gl_panelDadosAnunciante = new GroupLayout(panelDadosAnunciante);
@@ -913,10 +914,6 @@ public class FrameCarro extends JDialog {
 		btnNovo.setIcon(new ImageIcon(iconFile));
 		panelBotoes.add(btnNovo);
 		
-		btnLimpar = new JButton("Limpar");
-		btnLimpar.setIcon(new ImageIcon(iconBroom));
-		panelBotoes.add(btnLimpar);
-		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setIcon(new ImageIcon(iconContentSave));
 		panelBotoes.add(btnSalvar);
@@ -1008,13 +1005,6 @@ public class FrameCarro extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				trocarPicSelecionada(3);
-			}
-		});
-		
-		btnLimpar.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				limpar();
 			}
 		});
 		

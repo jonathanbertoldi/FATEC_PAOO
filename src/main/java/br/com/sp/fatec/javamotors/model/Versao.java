@@ -141,4 +141,15 @@ public class Versao {
 	public void setDeletadoEm(LocalDate deletadoEm) {
 		this.deletadoEm = deletadoEm;
 	}
+	
+	@Override
+    public String toString() {
+        String retorno = Float.toString(getCilindradas() / 1000) + " " +
+                getNomeMotor() + " " +
+                Integer.toString(getValvulas()) + "V " +
+                getCombustivel() + " " +
+                Integer.toString(getPortas()) + "P " +
+                getCambio();
+        return retorno;
+    }
 }

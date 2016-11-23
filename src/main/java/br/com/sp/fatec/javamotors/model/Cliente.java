@@ -130,4 +130,10 @@ public class Cliente {
 	public void setDeletadoEm(LocalDate deletadoEm) {
 		this.deletadoEm = deletadoEm;
 	}
+	
+	@Override
+    public String toString() {
+        return "ID: " + id + " - " + nome;
+    }
+	
 }
