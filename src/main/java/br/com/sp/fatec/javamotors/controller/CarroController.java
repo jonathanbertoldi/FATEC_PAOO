@@ -7,6 +7,7 @@ import br.com.sp.fatec.javamotors.dao.CarroDAO;
 import br.com.sp.fatec.javamotors.dao.ClienteDAO;
 import br.com.sp.fatec.javamotors.model.Carro;
 import br.com.sp.fatec.javamotors.model.Cliente;
+import br.com.sp.fatec.javamotors.model.Status;
 
 public class CarroController {
 
@@ -22,6 +23,10 @@ public class CarroController {
 	
 	public Carro show(Long carroId) {
 		return carroDao.findById(carroId);
+	}
+	
+	public List<Carro> showOnSale() {
+		return carroDao.findByStatus(Status.A_VENDA);
 	}
 	
 	public boolean create(Carro carro) {
