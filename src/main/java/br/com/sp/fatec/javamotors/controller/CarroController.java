@@ -17,6 +17,10 @@ public class CarroController {
 		carroDao = new CarroDAO();
 	}
 	
+	public void close() {
+		carroDao.close();
+	}
+	
 	public List<Carro> index() {
 		return carroDao.findAll();
 	}

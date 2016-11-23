@@ -59,6 +59,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class FrameCarro extends JDialog {
 
@@ -139,7 +141,8 @@ public class FrameCarro extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public FrameCarro() {
+	public FrameCarro(CarroController carroController) {
+		
 		initialize();
 		initListeners();
 		
@@ -150,7 +153,7 @@ public class FrameCarro extends JDialog {
         marcaControlador = new MarcaController();
         versaoControlador = new VersaoController();
         clienteControlador = new ClienteController();
-        carroControlador = new CarroController();
+        this.carroControlador = carroController;
         
         popularCbMarca();
         listenerMarca = true;
@@ -161,6 +164,7 @@ public class FrameCarro extends JDialog {
         limparImg();
         
         atualizarTableCarros();
+        
 	}
 	
 	private void popularCbMarca() {
@@ -278,7 +282,7 @@ public class FrameCarro extends JDialog {
     
     private boolean isImagemValida(File file) {
         String nome = file.getName().substring(file.getName().lastIndexOf(".")+1);
-        return nome.equals("jpg") || nome.equals("jpeg") || nome.equals("png") || nome.equals("bmp");
+        return nome.equals("jpg") || nome.equals("jpeg") || nome.equals("PNG") || nome.equals("bmp");
     }
     
     private void subirImg() {

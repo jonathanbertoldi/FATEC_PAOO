@@ -685,7 +685,7 @@ public class FramePrincipal extends JFrame {
 	}
 	
 	private void btnCarroListener() {
-		FrameCarro frame = new FrameCarro();
+		FrameCarro frame = new FrameCarro(carroControlador);
 		frame.setVisible(true);
 		atualizarTableCarros();
 	}

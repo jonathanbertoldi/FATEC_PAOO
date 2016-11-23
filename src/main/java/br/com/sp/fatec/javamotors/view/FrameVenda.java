@@ -209,16 +209,16 @@ public class FrameVenda extends JDialog {
 		panelBotoes.add(btnRealizarVenda);
 		
 		txtrAnunciante = new JTextArea();
+		txtrAnunciante.setEnabled(false);
 		txtrAnunciante.setLineWrap(true);
-		txtrAnunciante.setText("Anunciante");
 		
 		txtrCarro = new JTextArea();
+		txtrCarro.setEnabled(false);
 		txtrCarro.setLineWrap(true);
-		txtrCarro.setText("Carro");
 		
 		txtrComprador = new JTextArea();
+		txtrComprador.setEnabled(false);
 		txtrComprador.setLineWrap(true);
-		txtrComprador.setText("Comprador");
 		panelInformacoes.setLayout(new GridLayout(0, 3, 0, 0));
 		panelInformacoes.add(txtrAnunciante);
 		panelInformacoes.add(txtrCarro);

@@ -19,6 +19,10 @@ public class CarroDAO {
 		manager = PersistenceManager.INSTANCE.getEntityManager();
 	}
 	
+	public void close() {
+		manager.close();
+	}
+	
 	@Transactional
 	public void insert(Carro carro) {
 		try {
