@@ -1,7 +1,5 @@
 package br.com.sp.fatec.javamotors.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +11,6 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.GridLayout;
 import java.awt.Image;
 
@@ -62,27 +59,27 @@ public class FramePrincipal extends JFrame {
 		Image iconBmw = new ImageIcon(this.getClass().getResource("/bmw.png")).getImage();
 		Image iconCarProfile = new ImageIcon(this.getClass().getResource("/car_profile.png")).getImage();
 		
-		btnCarro = new JButton("");
+		btnCarro = new JButton("Carros");
 		Image iconCar = new ImageIcon(this.getClass().getResource("/car.png")).getImage();
 		btnCarro.setIcon(new ImageIcon(iconCar));
 		
-		btnVersao = new JButton("");
+		btnVersao = new JButton("Versões");
 		Image iconAutomotive = new ImageIcon(this.getClass().getResource("/automotive.png")).getImage();
 		btnVersao.setIcon(new ImageIcon(iconAutomotive));
 		
 		panelMenu.setLayout(new GridLayout(0, 5, 0, 0));
 		panelMenu.add(btnCarro);
 		
-		btnCliente = new JButton("");
+		btnCliente = new JButton("Clientes");
 		Image iconAccountCard = new ImageIcon(this.getClass().getResource("/account-card.png")).getImage();
 		btnCliente.setIcon(new ImageIcon(iconAccountCard));
 		panelMenu.add(btnCliente);
 		
-		btnMarca = new JButton("");
+		btnMarca = new JButton("Marcas");
 		btnMarca.setIcon(new ImageIcon(iconBmw));
 		panelMenu.add(btnMarca);
 		
-		btnModelo = new JButton("");
+		btnModelo = new JButton("Modelos");
 		btnModelo.setIcon(new ImageIcon(iconCarProfile));
 		panelMenu.add(btnModelo);
 		panelMenu.add(btnVersao);
@@ -110,6 +107,22 @@ public class FramePrincipal extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				FrameVersao frame = new FrameVersao();
+				frame.setVisible(true);
+			}
+		});
+		
+		btnCliente.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				FrameCliente frame = new FrameCliente();
+				frame.setVisible(true);
+			}
+		});
+		
+		btnCarro.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				FrameCarro frame = new FrameCarro();
 				frame.setVisible(true);
 			}
 		});

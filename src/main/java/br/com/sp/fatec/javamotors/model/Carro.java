@@ -3,6 +3,7 @@ package br.com.sp.fatec.javamotors.model;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -43,11 +44,11 @@ public class Carro {
 	@Column(name = "data_anuncio", nullable = false)
 	private LocalDate dataAnuncio;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "anunciante_id", nullable = false)
 	private Cliente anunciante;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "comprador_id")
 	private Cliente comprador;
 	

@@ -1,12 +1,11 @@
 package br.com.sp.fatec.javamotors.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
@@ -18,12 +17,6 @@ import java.awt.Image;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -32,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -376,12 +370,14 @@ public class FrameVersao extends JDialog {
 		
 		// TODO: lembrar de alterar isso aqui
 		
-		cbCambio = new JComboBox<Cambio>(Cambio.values());
+		cbCambio = new JComboBox<Cambio>();
+		cbCambio.setModel(new DefaultComboBoxModel<Cambio>(Cambio.values()));
 		cbCambio.setSelectedIndex(-1);
 		
 		lblCombustivel = new JLabel("Combustível");
 		
-		cbCombustivel = new JComboBox<Combustivel>(Combustivel.values());
+		cbCombustivel = new JComboBox<Combustivel>();
+		cbCombustivel.setModel(new DefaultComboBoxModel<Combustivel>(Combustivel.values()));
 		cbCombustivel.setSelectedIndex(-1);
 		GroupLayout gl_panelEast = new GroupLayout(panelEast);
 		gl_panelEast.setHorizontalGroup(

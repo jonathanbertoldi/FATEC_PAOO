@@ -23,7 +23,7 @@ public class Endereco {
 	@Column(length = 6, nullable = false)
     private Long numero;
 	
-	@Column(length = 8, nullable = false)
+	@Column(length = 9, nullable = false)
     private String cep;
 	
 	@Column(length = 50, nullable = false)

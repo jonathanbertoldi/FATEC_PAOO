@@ -49,4 +49,10 @@ public class VersaoDAO {
 		return versao;
 	}
 	
+	public List<Versao> findByModelo(long versaoId) {
+		TypedQuery<Versao> query = manager.createQuery("SELECT v FROM Versao v WHERE v.modelo.id = :modeloId", Versao.class);
+		query.setParameter("modeloId", versaoId);
+		return query.getResultList();
+	}
+	
 }

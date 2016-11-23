@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.com.sp.fatec.javamotors.dao.VersaoDAO;
+import br.com.sp.fatec.javamotors.model.Modelo;
 import br.com.sp.fatec.javamotors.model.Versao;
 
 public class VersaoController {
@@ -19,6 +20,10 @@ private VersaoDAO versaoDao;
 	
 	public Versao show(Long versaoId) {
 		return versaoDao.findById(versaoId);
+	}
+	
+	public List<Versao> findByModelo(Modelo modelo) {
+		return versaoDao.findByModelo(modelo.getId());
 	}
 	
 	public boolean create(Versao versao) {
