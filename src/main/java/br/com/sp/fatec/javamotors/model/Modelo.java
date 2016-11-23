@@ -96,6 +96,6 @@ public class Modelo {
 	
 	@Override
 	public String toString() {
-		return this.nome;
+		return this.nome + " " + this.ano;
 	}
 }

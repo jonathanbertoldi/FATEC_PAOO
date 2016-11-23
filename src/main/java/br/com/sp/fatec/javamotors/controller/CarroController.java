@@ -51,6 +51,7 @@ public class CarroController {
 	public boolean sell(Carro carro) {
 		try {
 			carro.setDataVenda(LocalDate.now());
+			carro.setStatus(Status.VENDIDO);
 			carroDao.update(carro);
 			return true;
 		} catch (Exception e) {

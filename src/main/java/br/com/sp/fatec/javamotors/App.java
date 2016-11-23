@@ -1,13 +1,7 @@
 package br.com.sp.fatec.javamotors;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
 import javax.swing.UIManager;
 
-import br.com.sp.fatec.javamotors.controller.MarcaController;
-import br.com.sp.fatec.javamotors.dao.PersistenceManager;
-import br.com.sp.fatec.javamotors.model.Marca;
 import br.com.sp.fatec.javamotors.view.FramePrincipal;
 
 public class App {

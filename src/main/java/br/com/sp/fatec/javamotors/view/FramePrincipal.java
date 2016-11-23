@@ -127,7 +127,7 @@ public class FramePrincipal extends JFrame {
         Graphics g = bi.createGraphics();
         icon.paintIcon(null, g, 0, 0);
         g.dispose();
-        picCarro.setIcon(new ImageIcon(bi.getScaledInstance(276, 192, Image.SCALE_DEFAULT)));
+        picCarro.setIcon(new ImageIcon(bi.getScaledInstance(172, 99, Image.SCALE_DEFAULT)));
 	}
 	
 	private void atualizarTableCarros() {
@@ -139,6 +139,7 @@ public class FramePrincipal extends JFrame {
         if (frameAbriu) {
             // frameAbriu = false;
         }
+        System.out.println("passou");
         lista = carroControlador.showOnSale();
         
         String[] headers = {"Cod.", "Marca", "Modelo", "Versão", "KM", "Anunciante"};
@@ -192,7 +193,7 @@ public class FramePrincipal extends JFrame {
             int i = 0;
             for (String caminho : carro.getFotos()) {
                 BufferedImage bi = ImageIO.read(new File(caminho));
-                listaPics[i] = new ImageIcon(bi.getScaledInstance(276, 192, Image.SCALE_DEFAULT));
+                listaPics[i] = new ImageIcon(bi.getScaledInstance(172, 99, Image.SCALE_DEFAULT));
                 i++;
             }
             picCarro.setIcon(listaPics[0]);
@@ -254,8 +255,8 @@ public class FramePrincipal extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelMenu, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 1566, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+						.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 1332, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(panelTable, GroupLayout.DEFAULT_SIZE, 1163, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelDados, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
@@ -292,7 +293,7 @@ public class FramePrincipal extends JFrame {
 		);
 		GridBagLayout gbl_panelWrapper = new GridBagLayout();
 		gbl_panelWrapper.columnWidths = new int[]{362, 0};
-		gbl_panelWrapper.rowHeights = new int[]{199, 209, 188, 63, 0};
+		gbl_panelWrapper.rowHeights = new int[]{100, 209, 188, 28, 0};
 		gbl_panelWrapper.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panelWrapper.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelWrapper.setLayout(gbl_panelWrapper);
@@ -310,18 +311,18 @@ public class FramePrincipal extends JFrame {
 			gl_panelFoto.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelFoto.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(picCarro, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+					.addComponent(picCarro, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panelBotoesFoto, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+					.addComponent(panelBotoesFoto, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panelFoto.setVerticalGroup(
 			gl_panelFoto.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panelFoto.createSequentialGroup()
+				.addGroup(gl_panelFoto.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panelFoto.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panelBotoesFoto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-						.addComponent(picCarro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+					.addGroup(gl_panelFoto.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelBotoesFoto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(picCarro, 0, 0, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		
@@ -543,7 +544,7 @@ public class FramePrincipal extends JFrame {
 		panelBotaoVenda = new JPanel();
 		
 		btnRealizarVenda = new JButton("Realizar Venda");
-		Image picVenda = new ImageIcon(this.getClass().getResource("/Key Exchange-64.png")).getImage();
+		Image picVenda = new ImageIcon(this.getClass().getResource("/Key_Exchange-24.png")).getImage();
 		btnRealizarVenda.setIcon(new ImageIcon(picVenda));
 		GridBagConstraints gbc_panelBotaoVenda = new GridBagConstraints();
 		gbc_panelBotaoVenda.fill = GridBagConstraints.BOTH;
@@ -637,8 +638,7 @@ public class FramePrincipal extends JFrame {
 		btnCarro.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				FrameCarro frame = new FrameCarro();
-				frame.setVisible(true);
+				btnCarroListener();
 			}
 		});
 		
@@ -682,5 +682,11 @@ public class FramePrincipal extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um carro para vende-lo");
         }
+	}
+	
+	private void btnCarroListener() {
+		FrameCarro frame = new FrameCarro();
+		frame.setVisible(true);
+		atualizarTableCarros();
 	}
 }

@@ -355,6 +355,7 @@ public class FrameCarro extends JDialog {
         txtKm.setText("");
         txtCor.setText("");
         limparImg();
+        enableTudo();
     }
     
     private void limparComprador() {
