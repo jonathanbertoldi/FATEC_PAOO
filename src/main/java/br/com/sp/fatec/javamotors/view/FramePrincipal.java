@@ -40,6 +40,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
 
@@ -62,7 +63,7 @@ public class FramePrincipal extends JFrame {
 	private JPanel panelBotaoVenda;
 	private JButton btnRealizarVenda;
 	private JLabel picCarro;
-	private JPanel panel_4;
+	private JPanel panelBotoesFoto;
 	private JButton btnPic1;
 	private JButton btnPic2;
 	private JButton btnPic3;
@@ -253,22 +254,22 @@ public class FramePrincipal extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelMenu, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 1566, Short.MAX_VALUE)
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(panelTable, GroupLayout.DEFAULT_SIZE, 1164, Short.MAX_VALUE)
+							.addComponent(panelTable, GroupLayout.DEFAULT_SIZE, 1163, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panelDados, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, 1566, Short.MAX_VALUE))
+							.addComponent(panelDados, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelTable, GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
-						.addComponent(panelDados, GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))
+						.addComponent(panelDados, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panelTable, GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		
@@ -303,7 +304,7 @@ public class FramePrincipal extends JFrame {
 		picCarro.setIcon(new ImageIcon(iconLogo));
 		picCarro.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		
-		panel_4 = new JPanel();
+		panelBotoesFoto = new JPanel();
 		GroupLayout gl_panelFoto = new GroupLayout(panelFoto);
 		gl_panelFoto.setHorizontalGroup(
 			gl_panelFoto.createParallelGroup(Alignment.LEADING)
@@ -311,7 +312,7 @@ public class FramePrincipal extends JFrame {
 					.addContainerGap()
 					.addComponent(picCarro, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+					.addComponent(panelBotoesFoto, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panelFoto.setVerticalGroup(
@@ -319,7 +320,7 @@ public class FramePrincipal extends JFrame {
 				.addGroup(Alignment.TRAILING, gl_panelFoto.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panelFoto.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+						.addComponent(panelBotoesFoto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
 						.addComponent(picCarro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
 					.addContainerGap())
 		);
@@ -337,10 +338,10 @@ public class FramePrincipal extends JFrame {
 		btnPic3 = new JButton("");
 		btnPic3.setIcon(new ImageIcon(pic3));
 		
-		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
-		panel_4.add(btnPic1);
-		panel_4.add(btnPic2);
-		panel_4.add(btnPic3);
+		panelBotoesFoto.setLayout(new GridLayout(0, 1, 0, 0));
+		panelBotoesFoto.add(btnPic1);
+		panelBotoesFoto.add(btnPic2);
+		panelBotoesFoto.add(btnPic3);
 		panelFoto.setLayout(gl_panelFoto);
 		GridBagConstraints gbc_panelFoto = new GridBagConstraints();
 		gbc_panelFoto.fill = GridBagConstraints.BOTH;
@@ -661,5 +662,25 @@ public class FramePrincipal extends JFrame {
 				trocarPicSelecionada(3);
 			}
 		});
+		
+		btnRealizarVenda.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				btnRealizarVendaListener();
+			}
+		});
+	}
+	
+	private void btnRealizarVendaListener() {
+		if (carro != null) {
+            FrameVenda fvenda = new FrameVenda(carro);
+            fvenda.setVisible(true);
+            if (fvenda.vendidoSucesso) {
+                carroControlador.sell(fvenda.getCarroVendido());
+                atualizarTableCarros();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um carro para vende-lo");
+        }
 	}
 }
