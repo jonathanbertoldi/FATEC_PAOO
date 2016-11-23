@@ -172,7 +172,7 @@ public class FrameMarca extends JDialog {
     }
     
     private void limparImg() {
-    	lblPiclogo.setIcon(new ImageIcon(getClass().getResource("/sem_foto.jpg")));
+    	lblPiclogo.setIcon(new ImageIcon(getClass().getResource("/sem_foto.png")));
     }
     
     private void limparTudo() {
@@ -337,7 +337,7 @@ public class FrameMarca extends JDialog {
 		
 		lblPiclogo = new JLabel("");
 		lblPiclogo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		Image iconLogo = new ImageIcon(this.getClass().getResource("/sem_foto.jpg")).getImage();
+		Image iconLogo = new ImageIcon(this.getClass().getResource("/sem_foto.png")).getImage();
 		lblPiclogo.setIcon(new ImageIcon(iconLogo));
 		
 		panelBotoesImagem = new JPanel();

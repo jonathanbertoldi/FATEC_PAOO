@@ -119,7 +119,7 @@ public class FramePrincipal extends JFrame {
 	}
 	
 	private void setarNoImg() {
-		ImageIcon icon = new ImageIcon(getClass().getResource("/sem_foto_3.jpg"));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/sem_foto_3.png"));
         BufferedImage bi = new BufferedImage(
                         icon.getIconWidth(),
                         icon.getIconHeight(),
@@ -300,7 +300,7 @@ public class FramePrincipal extends JFrame {
 		panelFoto = new JPanel();
 		
 		picCarro = new JLabel("");
-		Image iconLogo = new ImageIcon(this.getClass().getResource("/sem_foto_3.jpg")).getImage();
+		Image iconLogo = new ImageIcon(this.getClass().getResource("/sem_foto_3.png")).getImage();
 		picCarro.setIcon(new ImageIcon(iconLogo));
 		picCarro.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		

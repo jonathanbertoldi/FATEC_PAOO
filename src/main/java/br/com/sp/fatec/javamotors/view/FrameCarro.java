@@ -178,7 +178,7 @@ public class FrameCarro extends JDialog {
 	}
 	
 	private void limparImg() {
-        picCarro.setIcon(new ImageIcon(getClass().getResource("/sem_foto_2.jpg")));
+        picCarro.setIcon(new ImageIcon(getClass().getResource("/sem_foto_2.png")));
         for (int i = 0; i < 3; i++) {
             listaPics[i] = (ImageIcon)picCarro.getIcon();
         }
@@ -692,7 +692,7 @@ public class FrameCarro extends JDialog {
 		
 		picCarro = new JLabel("");
 		
-		Image iconLogo = new ImageIcon(this.getClass().getResource("/sem_foto_2.jpg")).getImage();
+		Image iconLogo = new ImageIcon(this.getClass().getResource("/sem_foto_2.png")).getImage();
 		picCarro.setIcon(new ImageIcon(iconLogo));
 		picCarro.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		
